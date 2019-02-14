@@ -26,7 +26,8 @@ app.post('/api/login', authctr.login);
 app.post('/api/logout', authctr.logout);
 //////////// BOOKS ////////////
 
-app.get('/api/book',bookctr.getBookContent);
+app.get('/api/book/content/:id',bookctr.getBookContent);
+app.get('/api/book', bookctr.getBookById)
 app.patch('/api/bookmark', bookctr.updateBookmark);
 
 
