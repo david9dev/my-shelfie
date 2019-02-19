@@ -1,0 +1,46 @@
+.login_container {
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .login
+  {
+    /* margin-top: 40px; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: 60px;
+    width: 50%;
+    /* height: 50%; */
+    padding: 40px;
+    background-color: #d34735;
+    border-radius: 5px;
+    box-shadow: 0 0 10px;
+  }
+  
+  .inputs
+  {
+    display: flex;
+    flex-direction: column;
+  }
+  .login_input
+  {
+    height: 60px;
+    margin-top: 40px;
+    font-size: 20px;
+    padding-left: 10px;
+  }
+  .submit
+  {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .submit button
+  {
+    height: 60px;
+    width: 80px;
+  }

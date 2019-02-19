@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {setUser} from './../../ducks/reducer';
+import {Link} from 'react-router-dom';
+import './Login.css';
 class Login extends Component
 {
     constructor(props)
@@ -19,11 +21,11 @@ class Login extends Component
             [event.target.name]: event.target.value
         });
     }
-    handleLogin()
+    handleLoginClick()
     {
         axios.post('/api/login',this.state).then((response) =>
         {
-            console.log(response.data);
+            // console.log(response.data)
             const {
                 first_name: firstname,
                 last_name: lastname,
@@ -31,6 +33,8 @@ class Login extends Component
                 user_id: id
             } = response.data;
 
+            console.log(id);
+            console.log(this.props)
             this.props.setUser({
                 firstname,
                 lastname,
@@ -46,25 +50,29 @@ class Login extends Component
             alert('username or password is incorrect');
         })
     }
+    // handleRegisterClick()
+    // {
+        
+    // }
     render()
     {
         return(
             <div className='login_container'>
-                <div className='login'>
+              <div className='login'>
                 <div className='inputs'>
-                    <input className='email' placeholder='username' name='email' type='email'
+                    <input className='login_input' placeholder='email' name='email' type='email'
                     onChange={(event) => this.handleInputChange(event)}
                     />
-                    <input className='password' type='password' placeholder='password' name='password'
+                    <input className='login_input' type='password' placeholder='password' name='password'
                     onChange={(event) => this.handleInputChange(event)}
                     />
                 </div>
                 <div className='submit'>
-                    <button>register</button>
+                    <Link to='/register'><button>register</button></Link>
                     <button
-                    onClick={() => this.handleLogin()}>login</button>
+                    onClick={() => this.handleLoginClick()}>login</button>
                 </div>
-                </div>
+              </div>
                 <footer>
                 </footer>
             </div>

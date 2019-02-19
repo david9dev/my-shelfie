@@ -24,6 +24,7 @@ app.use(session({
 app.post('/api/register', authctr.register);
 app.post('/api/login', authctr.login);
 app.post('/api/logout', authctr.logout);
+app.get('/api/session', authctr.getCurrentSession);
 //////////// BOOKS ////////////
 
 app.get('/api/book/content/:id',bookctr.getBookContent);

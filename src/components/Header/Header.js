@@ -1,22 +1,24 @@
 import React, {Component} from 'react';
 import logo from './shelfie_icon.png';
-import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {withRouter, Link} from 'react-router-dom';
 import './Header.css';
 
 class Header extends Component
 {
-    constructor(props)
-    {
-        super(props);
-        const {path} =this.props.match;
-        this.state = {
-            isLoginOrRegister: (path === '/' || path === '/register')
-        }
-        console.log(this.props)
+    // constructor(props)
+    // {
+    //     super(props);
+    //     const {pathname} =this.props.location;
+    //     this.state = {
+    //         isLoginOrRegister: (pathname === '/' || pathname === '/register')
+    //     }
 
-    }
+    // }
     render()
     {
+        
+        const {pathname} =this.props.location;
         return(
             <header>
               <div className='tot'>
@@ -24,11 +26,11 @@ class Header extends Component
               MY SHELFIE
               </div>
               {
-                  this.state.isLoginOrRegister
+                  (pathname === '/' || pathname === '/register')
                 ? null
                 : <div className='buttons'>
                    <button>username</button>
-                   <button>logout</button>
+                   <Link to='/'><button>logout</button></Link>
                    <button>cart</button>
                   </div>
               }
@@ -37,4 +39,5 @@ class Header extends Component
     }
 }
 
-export default withRouter(Header);
+
+export default withRouter(connect()(Header));

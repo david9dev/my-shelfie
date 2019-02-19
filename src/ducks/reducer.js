@@ -21,7 +21,7 @@ export default reducer;
 export function setUser(user)
 {
     return {
-        action: SET_USER,
+        type: SET_USER,
         payload: user
     };
 }

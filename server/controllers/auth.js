@@ -52,6 +52,32 @@ module.exports = {
             }
         })
     },
+    getCurrentSession(request, response)
+    {
+        if(request.session.user)
+        {
+            const {
+                first_name: firstname, 
+                last_name: lastname, 
+                email,
+                user_id: id} = request.session.user
+            response.status(200).send({
+                firstname,
+                lastname,
+                email,
+                id
+            })
+        }
+        else
+        {
+            response.status(200).send({
+                firstname: '',
+                lastname: '',
+                email: '',
+                id: 0
+            })
+        }
+    },
     logout: function(request, response)
     {
         request.session.destroy();

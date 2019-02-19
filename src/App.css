@@ -1,5 +1,10 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+App {
   text-align: center;
+  
 }
 
 .App-logo {
