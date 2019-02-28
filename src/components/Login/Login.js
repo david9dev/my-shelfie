@@ -32,9 +32,6 @@ class Login extends Component
                 email,
                 user_id: id
             } = response.data;
-
-            console.log(id);
-            console.log(this.props)
             this.props.setUser({
                 firstname,
                 lastname,
@@ -43,7 +40,7 @@ class Login extends Component
             });
         }).then(() =>
         {
-            this.props.history.push('/dashboard');
+            this.props.history.push('/dashboard/store');
         }).catch((error) =>
         {
             console.log(error);
@@ -67,6 +64,7 @@ class Login extends Component
                     onChange={(event) => this.handleInputChange(event)}
                     />
                 </div>
+
                 <div className='submit'>
                     <Link to='/register'><button>register</button></Link>
                     <button

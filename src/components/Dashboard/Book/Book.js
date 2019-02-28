@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-// import axios from 'axios';
-import './App.css';
+import axios from 'axios';
+import './Book.css';
 
 class Book extends Component {
   constructor(props)
@@ -15,8 +15,10 @@ class Book extends Component {
   }
   componentDidMount()
   {
-    axios.get(`/api/book/content/1`).then((response) =>
+    const {id} = this.props.match.params
+    axios.get(`/api/book/content/${id}`).then((response) =>
     {
+      // console.log(response.data)
       this.setState({
         page: response.data.data,
         bookmark: response.data.bookmark
@@ -25,9 +27,10 @@ class Book extends Component {
   }
   handleTurnPage(value)
   {
-    axios.patch('/api/bookmark', {id: 1, mark: value}).then(() =>
+    const {id} = this.props.match.params
+    axios.patch('/api/bookmark', {id: id, mark: value}).then(() =>
     {
-      axios.get(`/api/book/content/1`).then((response) =>
+      axios.get(`/api/book/content/${id}`).then((response) =>
       {
         this.setState({
           page: response.data.data,
@@ -37,15 +40,23 @@ class Book extends Component {
     })
   }
   render() {
+    const {title} = this.props.match.params
     return (
-      <div className="Book">
-        <p>{this.state.page}</p>
+      <div className="book">
+      <h2>{title}</h2>
+        <div className="page">
         <button 
         onClick={() => this.handleTurnPage(this.state.bookmark - 1000)}>
-        previous page</button>
+        {"<"}</button>
+
+        <p className='words'>
+        {this.state.page}
+        </p>
+
         <button
         onClick={() => this.handleTurnPage(this.state.bookmark + 1000)}>
-        next page</button>
+        ></button>
+        </div>
       </div>
     );
   }

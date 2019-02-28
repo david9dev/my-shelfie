@@ -1,0 +1,17 @@
+.page
+{
+    width: 80%;
+    display: flex;
+    word-wrap: break-word;
+}
+.book
+{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+.words
+{
+    padding: 10px;
+}

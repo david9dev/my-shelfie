@@ -15,6 +15,13 @@ class Header extends Component
     //     }
 
     // }
+    handleStoreLibrary(event)
+    {
+        const {pathname} = this.props.location
+        const direction = (pathname === '/dashboard/store' || pathname.includes('/book'))
+        ? 'library' : 'store';
+        this.props.history.push(`/dashboard/${direction}`)
+    }
     render()
     {
         
@@ -22,16 +29,20 @@ class Header extends Component
         return(
             <header>
               <div className='tot'>
-              <img src={logo} alt='shelfie'/>
+              <img className='logo' src={logo} alt='shelfie'/>
               MY SHELFIE
               </div>
               {
                   (pathname === '/' || pathname === '/register')
                 ? null
                 : <div className='buttons'>
-                   <button>username</button>
+                   <button
+                   onClick={(event)=> this.handleStoreLibrary(event)}>
+                   {(pathname === '/dashboard/store' || pathname.includes('/book'))
+                   ? 'library' : 'store'}
+                   </button>
                    <Link to='/'><button>logout</button></Link>
-                   <button>cart</button>
+                   <Link to='/cart'><button>cart</button></Link>
                   </div>
               }
             </header>

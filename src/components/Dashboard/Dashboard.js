@@ -10,7 +10,9 @@ class Dashboard extends Component
     constructor(props)
     {
         super(props)
-        this.state = {};
+        this.state = {
+            booksInStore: []
+        };
 
     }
     componentDidMount()
@@ -29,9 +31,20 @@ class Dashboard extends Component
                 }
             })
         }
+        axios.get('/api/store').then((response) =>
+            {
+                console.log(response.data);
+                this.setState({
+                    booksInStore: response.data
+                })
+            })
     }
     render()
     {
+        const bookCards = this.state.booksInStore.map((curVal, index) =>
+        {
+           return <BookCard book={curVal} key={index}/>
+        })
         const {firstname, lastname} = this.props;
         return(
             <div className='dashboard'>
@@ -44,7 +57,7 @@ class Dashboard extends Component
                 <div className='search_bar'>
                     <input placeholder='search'/>
                 </div>
-                <BookCard/>
+                {bookCards}
                 </div>
             </div>
         )
